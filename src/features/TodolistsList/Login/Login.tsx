@@ -14,7 +14,7 @@ type FormValuesType  = {
 
 export const Login = () => {
     const dispatch = useAppDispatch();
-    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.login.isLoggedIn)
+    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.auth.isLoggedIn)
 
     const formik = useFormik({
         validate: (values) => {

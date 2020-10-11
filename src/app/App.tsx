@@ -20,7 +20,7 @@ function App({demo = false}: PropsType) {
     const dispatch = useDispatch()
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     const isInitialized = useSelector<AppRootStateType, boolean>(state => state.app.isInitialized);
-    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.login.isLoggedIn)
+    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.auth.isLoggedIn)
 
     useEffect(()=>{
         dispatch(initializedApTC())

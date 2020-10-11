@@ -29,7 +29,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.login.isLoggedIn)
+    const isLoggedIn = useSelector<AppRootStateType,boolean>(state => state.auth.isLoggedIn)
     useEffect(() => {
         if (demo|| !isLoggedIn) {
             return;
@@ -44,17 +44,17 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
     }, [])
 
     const addTask = useCallback(function (title: string, todolistId: string) {
-        const thunk = addTaskTC(title, todolistId)
+        const thunk = addTaskTC({title, todolistId})
         dispatch(thunk)
     }, [])
 
     const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
-        const thunk = updateTaskTC(id, {status}, todolistId)
+        const thunk = updateTaskTC( {taskId: id, model : {status}, todolistId: todolistId})
         dispatch(thunk)
     }, [])
 
     const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
-        const thunk = updateTaskTC(id, {title: newTitle}, todolistId)
+        const thunk = updateTaskTC({taskId: id, model: {title: newTitle},todolistId: todolistId})
         dispatch(thunk)
     }, [])
 
